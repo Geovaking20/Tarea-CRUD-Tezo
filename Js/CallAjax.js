@@ -135,51 +135,51 @@ function Llamada1() {
             }
         }
         );
+}
 
-        function Llamada2() {
-            alert("Su pelicula fue añadida con éxito");
-            var txt_title = document.getElementById('Title').value;
-            var txt_imdbID = document.getElementById('imdbID').value;
-            var txt_description = document.getElementById('description').value;
-            var txt_Ubication = document.getElementById('Ubication').value;
-            var txt_year = document.getElementById('year').value;
-            var txt_Tipo = document.getElementById('Tipo').value;
-            var txt_Poster = document.getElementById('Poster').value;
-        
-            url = "https://movie.azurewebsites.net/api/cartelera";
-        
-            const Json = {
-                imdbID: txt_imdbID,
-                Title: txt_title,
-                Year: txt_year,
-                Type: txt_Tipo,
-                Poster: txt_Poster,
-                description: txt_description,
-                Ubication: txt_Ubication,
-                Estado: 1
+function Llamada2() {
+    alert("Su pelicula fue añadida con éxito");
+    var txt_title = document.getElementById('Title').value;
+    var txt_imdbID = document.getElementById('imdbID').value;
+    var txt_description = document.getElementById('description').value;
+    var txt_Ubication = document.getElementById('Ubication').value;
+    var txt_year = document.getElementById('year').value;
+    var txt_Tipo = document.getElementById('Tipo').value;
+    var txt_Poster = document.getElementById('Poster').value;
+
+    url = "https://movie.azurewebsites.net/api/cartelera";
+
+    const Json = {
+        imdbID: txt_imdbID,
+        Title: txt_title,
+        Year: txt_year,
+        Type: txt_Tipo,
+        Poster: txt_Poster,
+        description: txt_description,
+        Ubication: txt_Ubication,
+        Estado: 1
+    }
+
+    const config = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(Json),
+    };
+
+    fetch(url, config)
+        .then(data => {
+            if (!data.ok) {
+                throw Error(data.status);
             }
-        
-            const config = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(Json),
-            };
-        
-            fetch(url, config)
-                .then(data => {
-                    if (!data.ok) {
-                        throw Error(data.status);
-                    }
-                    return data.json();
-                }).then(Json => {
-                    console.log(Json);
-                }).catch(e => {
-                    console.log(e);
-                });
-        
-        }
+            return data.json();
+        }).then(Json => {
+            console.log(Json);
+        }).catch(e => {
+            console.log(e);
+        });
+
 }
 
 function Llamada3() {
