@@ -130,8 +130,6 @@ function Llamada1() {
                     div.appendChild(div2);
                     divPeli.appendChild(div);
 
-
-
                 }
 
             }
