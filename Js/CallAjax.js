@@ -183,3 +183,19 @@ function Llamada1() {
         
         }
 }
+
+function Llamada3() {
+    alert("Su pelicula fue eliminada con éxito");
+
+    var txt_imdbID = document.getElementById('imdbID').value;
+
+    url = "https://movie.azurewebsites.net/api/cartelera?imdbID=" + txt_imdbID;
+
+    const config = {
+        method: 'DELETE',
+    };
+
+    fetch(url, config)
+        .then(res => res.json())
+        .then(res => console.log(res))
+}
