@@ -199,3 +199,46 @@ function Llamada3() {
         .then(res => res.json())
         .then(res => console.log(res))
 }
+
+function Llamada4() {
+    alert("Su pelicula fue actualizada con éxito");
+    var txt_title2 = document.getElementById('Title2').value;
+    var txt_imdbID2 = document.getElementById('imdbID2').value;
+    var txt_description2 = document.getElementById('description2').value;
+    var txt_Ubication2 = document.getElementById('Ubication2').value;
+    var txt_year2 = document.getElementById('year2').value;
+    var txt_Tipo2 = document.getElementById('Tipo2').value;
+    var txt_Poster2 = document.getElementById('Poster2').value;
+
+    url = "https://movie.azurewebsites.net/api/cartelera?imdbID=" + txt_imdbID2;
+
+    const Json2 = {
+        imdbID: txt_imdbID2,
+        Title: txt_title2,
+        Year: txt_year2,
+        Type: txt_Tipo2,
+        Poster: txt_Poster2,
+        description: txt_description2,
+        Ubication: txt_Ubication2,
+        Estado: 1
+    };
+
+    const config = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(Json2),
+    };
+    fetch(url, config)
+        .then(data => {
+            if (!data.ok) {
+                throw Error(data.status);
+            }
+            return data.json();
+        }).then(Json => {
+            console.log(Json);
+        }).catch(e => {
+            console.log(e);
+        });
+}
